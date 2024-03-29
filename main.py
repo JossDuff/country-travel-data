@@ -38,8 +38,8 @@ for col_name, scaled_col_name in (('costOfLivingLC', 'cost_of_living_scaled'), (
     max_value = cleaned_df[col_name].max()
     cleaned_df[scaled_col_name] = (cleaned_df[col_name] - min_value) / (max_value - min_value)
 
-col_factor = 1.2
-hdi_factor = 1
+col_factor = 1.4
+hdi_factor = 0.6
 cr_factor = 1
 
 # merged_df['hdi_cost_ratio'] = merged_df['Hdi2021'] / merged_df['costOfLivingLC']
@@ -48,7 +48,7 @@ cleaned_df['joss_ratio'] = cleaned_df['hdi_scaled'] * hdi_factor - cleaned_df['c
 cleaned_df = cleaned_df.dropna(subset=['joss_ratio'])
 sorted_df = cleaned_df.sort_values(by='joss_ratio', ascending=False)
 
-top_10_countries = sorted_df.head(10)
+top_10_countries = sorted_df.head(20)
 bottom_10_countries = sorted_df.tail(10)
 
 print("top 10:")
